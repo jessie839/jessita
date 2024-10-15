@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grace Cottage Celebrations</title>
+  <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/css/lightbox.min.css" rel="stylesheet">
+  <style>
+    /* Add grid layout for images */
+    body {
+  background-color: #fafafa;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+  gap: 20px; /* Space between images */
+  padding: 20px;
+}
+
+/* Ensure all images have the same size and dimmed effect */
+.image-grid img {
+  width: 100%;
+  height: 350px; /* Set a fixed height */
+  object-fit: cover; /* Ensures image doesn't get distorted */
+  border-radius: 10px;
+   /* Smooth transition on hover */
+}
+
+/* Hover effect for individual images */
+
+
+.celebration-text {
+  text-align: center;
+  margin-top: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+  </style>
+</head>
+<body>
+  <h2>LUNCH BUFFET</h2>
+
+  <!-- Grid for the images -->
+  <div class="image-grid">
+    <a href="assets/img/team/img1.jpg" data-lightbox="celebration" data-title="Celebration 1"><img src="assets/img/team/img1.jpg" alt="Celebration 1"></a>
+    <a href="assets/img/team/img2.jpg" data-lightbox="celebration" data-title="Celebration 2"><img src="assets/img/team/img2.jpg" alt="Celebration 2"></a>
+    <a href="assets/img/team/img3.jpg" data-lightbox="celebration" data-title="Celebration 3"><img src="assets/img/team/img3.jpg" alt="Celebration 3"></a>
+    <a href="assets/img/team/img4.jpg" data-lightbox="celebration" data-title="Celebration 4"><img src="assets/img/team/img4.jpg" alt="Celebration 4"></a>
+    <a href="assets/img/team/img5.jpg" data-lightbox="celebration" data-title="Celebration 5"><img src="assets/img/team/img5.jpg" alt="Celebration 5"></a>
+    <a href="assets/img/team/img6.jpg" data-lightbox="celebration" data-title="Celebration 6"><img src="assets/img/team/img6.jpg" alt="Celebration 6"></a>
+    <a href="assets/img/team/vid.mp4" data-lightbox="celebration" data-title="Celebration 7"><img src="assets/img/team/img4.jpg" alt="Celebration 7"></a>
+
+  </div>
+
+  <!-- Text below the grid of images -->
+  <div class="celebration-text">
+    <p>Each celebration at Grace Cottage brings unforgettable moments of joy and togetherness, making ordinary days extraordinary.</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox.min.js"></script>
+</body>
+</html>
