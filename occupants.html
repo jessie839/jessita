@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Occupants</title>
+
+   
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #f5f5f5, #e0e0e0);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        section {
+            width: 90%;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-weight: bold;
+            font-size: xx-large;
+            color: orangered;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: large;
+            padding: 10px 0;
+            line-height: 1.5;
+            text-align: center;
+            transition: color 0.3s ease;
+        }
+
+        li:hover {
+            color: orangered;
+        }
+
+       
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3em;
+            }
+
+            li {
+                font-size: 2em;
+            }
+        }
+
+       
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            li {
+                font-size: 1.2em;
+            }
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <section>
+        <h1>List of Occupants:</h1>
+        <ul>
+            <li><i class="fas fa-home"></i> <strong>G1:</strong> Arun & Anbini</li>
+            <li><i class="fas fa-home"></i> <strong>G2:</strong> Lakshmi Narayanan & Leela</li>
+            <li><i class="fas fa-home"></i> <strong>F1:</strong> Amose & Grace</li>
+            <li><i class="fas fa-home"></i> <strong>F2:</strong> Vivek & Narmatha</li>
+            <li><i class="fas fa-home"></i> <strong>F3:</strong> Rajasekaran & Karthiga</li>
+            <li><i class="fas fa-home"></i> <strong>S1:</strong> Ashok & Revathi</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>2024 Grace Cottage</p>
+    </footer>
+
+</body>
+</html>

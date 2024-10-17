@@ -1,3 +1,36 @@
+<?php
+session_start();
+
+// Check if the user is already logged in
+if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
+    // User is not logged in, redirect to the login page
+    header("Location: login.php");
+    exit();
+}
+
+// If the user is logged in, display the main content of your site
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['photo'])) {
+    // Check if file was uploaded without errors
+    if ($_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['photo']['tmp_name'];
+        $fileName = $_FILES['photo']['name'];
+        $uploadFileDir = './uploads/';
+        $dest_path = $uploadFileDir . basename($fileName);
+
+        // Move the file to the upload directory
+        if (move_uploaded_file($fileTmpPath, $dest_path)) {
+            $upload_message = "File is successfully uploaded.";
+        } else {
+            $upload_message = "There was an error moving the uploaded file.";
+        }
+    } else {
+        $upload_message = "No file uploaded or there was an upload error.";
+    }
+}
+
+// Display uploaded photos
+$uploadedPhotos = glob('./uploads/*'); // Get all files from the uploads directory
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +50,16 @@
   <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+    .gallery img {
+      width: 100%;
+      height: auto;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
+
     <body class="index-page">
       <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
@@ -32,6 +73,8 @@
                       <li><a href="functions.html">Functions</a></li>
                       <li><a href="properties.html">Properties</a></li>
                       <li><a href="contact.html">Contact</a></li>
+                      <li><a href="logout.php">Logout</a></li>
+					            
                     </ul>
                       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
               </nav>
@@ -44,90 +87,128 @@
       </header>
       
       <img src="assets/img/team/home.png" style="height: auto;width:100%;"/>
-    <section id="hero" class="hero section">
+    <section id="hero" class="hero section" >
         <div class="overlay"></div>
         <div class="hero-content">
-           <h2 class="fade-in">Welcome to Grace Cottage</h2>
+           <h2 class="fade-in" 
+>Welcome to Grace Cottage</h2>
             
-            <a href="contact.html" class="btn btn-dark ">Contact Us</a>
+            <a href="contact.html" class="btn btn-dark ">Contact Us</a><br>
+            <a href="Occupants.html" class="btn btn-dark ">View Occupants</a>
+            </div></br>
             
            
             
         </div>
     </section>
-    <section id="services" class="services section">
+
+    <section id="services" class="services section" style="
+    margin-top: 0;
+    padding-top: 0;
+">
       <div class="container section-title" data-aos="fade-up">
         <h2>Functions</h2>
-        <p>“Functions in our Grace Cottage are like the heart of home life—each one beautifully designed to make everyday living smooth and efficient, turning a space into a perfect blend of comfort and functionality.”</p>
+        <p>"Functions in our Grace Cottage are like the heart of home life—each one beautifully designed to make everyday living smooth and efficient"</p>
       </div>
       <div class="container">
         <div class="row gy-4">
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+          <!-- Celebrations -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item position-relative">
               <div class="icon">
                 <i class="bi bi-gift"></i>
               </div>
-              <a href="other-celebrations.html" target="_blank" class="stretched-link">
+              
+              
                 <h3>Celebrations</h3>
               </a>
-              <p>“Other celebrations at our Grace Cottage are like delightful surprises—each one adds a unique sparkle to the space, turning ordinary days into extraordinary moments filled with joy, laughter, and connection.”</p>
+              <p>"Other celebrations at our Grace Cottage are like delightful surprises—each one adds a unique sparkle to the space"</p>
+              <form action="celebrations.php" method="GET" style="display: inline-block; margin: 20px;">
+            <button type="submit" style="padding: 20px; width: 200px; background-color: #f65003; color: black; border: none; border-radius: 10px; font-size: 18px; cursor: pointer; transition: background-color 0.3s ease;">
+                Click to upload photo
+            </button>
+        </form>
             </div>
           </div>
+    
+          <!-- Wedding Anniversaries -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item position-relative">
               <div class="icon">
                 <i class="bi bi-person-heart"></i>
               </div>
-              <a href="" class="stretched-link">
-                <h3>Wedding Anniversaries</h3>
-              </a>
-              <p>“Wedding anniversaries at our Grace Cottage are like special milestones—celebrating love and commitment with heartfelt gatherings that turn each year into a beautiful reminder of cherished moments and enduring bonds.”</p>
+              <h3>Wedding Anniversaries</h3>
+              <p>"Wedding anniversaries at our Grace Cottage are like special milestones—celebrating love and commitment with heartfelt gatherings"</p>
+              <form action="wedding-anniversaries.php" method="GET" style="display: inline-block; margin: 20px;">
+            <button type="submit" style="padding: 20px; width: 200px; background-color: #f65003; color: black; border: none; border-radius: 10px; font-size: 18px; cursor: pointer; transition: background-color 0.3s ease;">
+            Click to upload photo
+            </button>
+        </form>
             </div>
           </div>
+    
+          <!-- Christmas -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="service-item position-relative">
               <div class="icon">
                 <i class="bi bi-tree"></i>
               </div>
-              <a href="" class="stretched-link">
-                <h3>Christmas</h3>
-              </a>
-              <p>“Christmas is like a special event at our Grace Cottage—transforming the space with festive cheer, creating a joyful atmosphere that turns every moment into a heartwarming celebration.”</p>
+              <h3>Christmas</h3>
+              <p>"Christmas is like a special event at our Grace Cottage—transforming the space with festive cheer"</p>
+              <form action="christmas.php" method="GET" style="display: inline-block; margin: 20px;">
+            <button type="submit" style="padding: 20px; width: 200px; background-color: #f65003; color: black; border: none; border-radius: 10px; font-size: 18px; cursor: pointer; transition: background-color 0.3s ease;">
+            Click to upload photo
+            </button>
+        </form>
             </div>
           </div>
+    
+          <!-- New Year -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
             <div class="service-item position-relative">
               <div class="icon">
                 <i class="bi bi-stars"></i>
               </div>
-              <a href="" class="stretched-link">
-                <h3>Newyear</h3>
-              </a>
-              <p>“New Year’s is like a grand celebration at our Grace Cottage—ushering in fresh beginnings with a burst of joy and excitement, and turning every corner into a vibrant, hopeful start to the year.”</p>
-              <a href="" class="stretched-link"></a>
+              <h3>New Year</h3>
+              <p>"New Year's is like a grand celebration at our Grace Cottage—ushering in fresh beginnings with a burst of joy and excitement"</p>
+              <form action="new-year.php" method="GET" style="display: inline-block; margin: 20px;">
+            <button type="submit" style="padding: 20px; width: 200px; background-color: #f65003; color: black; border: none; border-radius: 10px; font-size: 18px; cursor: pointer; transition: background-color 0.3s ease;">
+            Click to upload photo
+            </button>
+        </form>
             </div>
           </div>
+    
+          <!-- Get-together -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
             <div class="service-item position-relative">
               <div class="icon">
                 <i class="bi bi-person-arms-up"></i>
               </div>
-              <a href="" class="stretched-link">
-                <h3>Get-together</h3>
-              </a>
-              <p>“A get-together at our Grace Cottage is like a cherished gathering—bringing people together in a warm and inviting space, where every shared moment adds to the joy and creates lasting memories.”</p>
-              <a href="" class="stretched-link"></a>
+              <h3>Get-together</h3>
+              <p>"A get-together at our Grace Cottage is like a cherished gathering—bringing people together in a warm and inviting space"</p>
+              <form action="get-together.php" method="GET" style="display: inline-block; margin: 20px;">
+            <button type="submit" style="padding: 20px; width: 200px; background-color: #f65003; color: black; border: none; border-radius: 10px; font-size: 18px; cursor: pointer; transition: background-color 0.3s ease;">
+            Click to upload photo
+            </button>
+        </form>
+    </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item  position-relative">
+    
+          <!-- Birthdays -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item position-relative">
               <div class="icon">
                 <i class="bi bi-cake"></i>
               </div>
-              <a href="" class="stretched-link">
-                <h3>Birthdays</h3>
-              </a>
-              <p>"Birthdays are like functions in our Grace Cottage—each one brings a unique celebration, adding joy and warmth to our lives, and turning every year into a special, memorable occasion."</p>
+              <h3>Birthdays</h3>
+              <p>"Birthdays are like functions in our Grace Cottage—each one brings a unique celebration, adding joy and warmth to our lives"</p>
+              <form action="birthdays.php" method="GET" style="display: inline-block; margin: 20px;">
+            <button type="submit" style="padding: 20px; width: 200px; background-color: #f65003; color: black; border: none; border-radius: 10px; font-size: 18px; cursor: pointer; transition: background-color 0.3s ease;">
+            Click to upload photo
+            </button>
+        </form>
             </div>
           </div>
         </div>
@@ -136,7 +217,7 @@
     <section id="agents" class="agents section">
       <div class="container section-title" data-aos="fade-up">
         <h2>About Owners:</h2>
-        <p>"The heart and soul behind Grace Cottage are its owners, whose love for hospitality turns every stay into a cherished memory. With their warmth and care, they have created a sanctuary where every tenants feels like family, and every corner whispers comfort and grace."</p>
+        <p>"The heart and soul behind Grace Cottage are its owners, whose love for hospitality turns every stay into a cherished memory"</p>
       </div>
     </section>
     <footer id="footer" class="footer light-background">
@@ -171,5 +252,7 @@
       <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
       <script src="assets/js/main.js"></script>
       <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+
 </body>
 </html>
