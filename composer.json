@@ -1,0 +1,6 @@
+{
+    "name": "jessita/grace-cottage",
+    "description": "Deploy PHP Application to Vercel",
+    "type": "project",
+    "license": "MIT"
+}
