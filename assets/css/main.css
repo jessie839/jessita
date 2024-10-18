@@ -36,6 +36,25 @@
   color: #000000;
 }
 
+.hero-content {
+  text-align: center; 
+ 
+}
+.hero-content h2 {
+  font-size: 2.5rem; 
+  font-weight: bold; 
+  color: #f65003; 
+ 
+}
+.hero-content p {
+  font-size: 1.25rem; 
+  color: #f65003; 
+  margin-bottom: 30px; 
+  line-height: 1.6; 
+}
+
+
+
 .btn-dark {
   color: #000000; 
   padding: 10px 20px; 
@@ -112,6 +131,26 @@ h6 {
   font-family: var(--heading-font);
 }
 
+#hero {
+ 
+  height: 50vh;
+  background: url('assets/img/hero-carousel/yel.jpg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  text-align: center;
+}
+
+.upload-form {
+  margin-top: 10px; /* Space above the form */
+  padding: 15px; /* Padding inside the form */
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #fa8b0c4a; /* Light background color */
+
+}
 .upload-form {
   margin-top: 10px; /* Space above the form */
   padding: 15px; /* Padding inside the form */
